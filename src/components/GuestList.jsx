@@ -9,7 +9,6 @@ const GuestList = () => {
     return jsx
   }, [teams])
 
-
   useEffect(() => {
     if (localStorage.getItem('teams')) {
       setTeams(JSON.parse(localStorage.getItem('teams')))
@@ -42,20 +41,72 @@ const GuestList = () => {
     const { team, player } = detail
 
     if (team !== '' && player !== '') {
-      setTeams((prevState) =>
-        {
-          return !prevState[team]
-            ? {
-                ...prevState,
-                [team]: [player],
-              }
-            : {
-                ...prevState,
-                [team]: [...prevState[team], player],
-              }
-        }
-      )
+      setTeams((prevState) => {
+        return !prevState[team]
+          ? {
+              ...prevState,
+              [team]: [player],
+            }
+          : {
+              ...prevState,
+              [team]: [...prevState[team], player],
+            }
+      })
       setDetail({ team: team, player: '' })
+    }
+  }
+
+  function modifyItem(e, team, player) {
+    if (!player) {
+      e.target.text = ''
+      const newInput = document.createElement('input')
+      newInput.className += 'input-blue w-fit'
+      newInput.value = `${team}`
+      newInput.onkeydown = (e) => modifyItemValue(e, team)
+      newInput.onblur = (e) => backToInitalValue(e, team)
+      e.target.appendChild(newInput)
+      newInput.focus()
+    } else if (player) {
+      e.target.text = ''
+      const newInput = document.createElement('input')
+      newInput.className += 'input-blue w-fit'
+      newInput.value = `${player}`
+      newInput.onkeydown = (e) => modifyItemValue(e, team, player)
+      newInput.onblur = (e) => backToInitalValue(e, team, player)
+      e.target.appendChild(newInput)
+      newInput.focus()
+    }
+  }
+
+  function modifyItemValue(e, team, player) {
+    if (e.code === 'Enter') {
+      if (!player) {
+        setTeams((prevState) => {
+          const newState = {...prevState, [e.target.value]: [...prevState[team]]}
+          delete newState[team]
+          return newState
+        })
+      } else if (player) {
+        setTeams((prevState) => {
+          const newState = {...prevState}
+          console.log(newState[team])
+          newState[team].push(e.target.value)
+          newState[team] = (newState[team].filter(word => word !== player))
+          return newState
+        })
+      }
+    }
+  }
+
+  function backToInitalValue(e, team, player) {
+    if (!player) {
+      const parent = e.target.parentElement
+      parent.text = team
+      parent.removeChild(e.target)
+    } else if (player) {
+      const parent = e.target.parentElement
+      parent.text = player
+      parent.removeChild(e.target)
     }
   }
 
@@ -67,10 +118,10 @@ const GuestList = () => {
     for (let [team, players] of Object.entries(teams)) {
       const display = (
         <>
-          <h1 onMouseEnter={showDelete} onMouseLeave={showDelete}>
-            {team}
+          <h1 className="opacity-1">
+            <a onClick={(e) => modifyItem(e,team)}>{team}</a>
             <button
-              class="delete-btn"
+              className="delete-btn"
               onClick={() => {
                 deleteTeam(team)
               }}
@@ -80,10 +131,10 @@ const GuestList = () => {
           </h1>
           <ul>
             {Object.values(players).map((player) => (
-              <li onMouseEnter={showDelete} onMouseLeave={showDelete}>
-                {player}
+              <li className="opacity-1" >
+                <a onClick={(e) => modifyItem(e, team, player)}>{player}</a>
                 <button
-                  class="delete-btn"
+                  className="delete-btn"
                   onClick={() => {
                     deletePlayer(team, player)
                   }}
@@ -99,18 +150,6 @@ const GuestList = () => {
       jsx.push(display)
     }
     return jsx
-  }
-
-  function showDelete(e) {
-    if (e.target.localName === 'li' || e.target.localName === 'h1') {
-      e.type === 'mouseenter'
-        ? (e.target.children[0].name = 'appear')
-        : (e.target.children[0].name = '')
-    }else{
-      e.type === 'mouseenter'
-        ? (e.target.name = 'appear')
-        : (e.target.name = '')
-    }
   }
 
   function deleteTeam(team) {
@@ -136,17 +175,13 @@ const GuestList = () => {
     }))
   }
 
-  function resetTeams() {
-    setTeams({})
-  }
-
   return (
-    <div class="root-div">
-      <form ref={ref} onSubmit={handleSubmit} class="input-form">
+    <div className="root-div">
+      <form ref={ref} onSubmit={handleSubmit} className="input-form">
         <div>
           <h1>choose a player</h1>
           <input
-            class="input-blue"
+            className="input-blue"
             name="player"
             value={detail.player}
             onChange={handleChange}
@@ -156,7 +191,7 @@ const GuestList = () => {
         <div>
           <h1>choose a team</h1>
           <input
-            class="input-blue"
+            className="input-blue"
             name="team"
             value={detail.team}
             onChange={handleChange}
@@ -164,10 +199,10 @@ const GuestList = () => {
           />
         </div>
       </form>
-      <button class="delete-teams-btn" name='appear' onClick={resetTeams}>
+      <button className="delete-teams-btn" name="appear" onClick={() => setTeams({})}>
         delete every teams
       </button>
-      <div class="team-div">{displayTeams}</div>
+      <div className="team-div">{displayTeams}</div>
     </div>
   )
 }
