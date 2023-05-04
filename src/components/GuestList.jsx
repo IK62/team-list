@@ -89,7 +89,6 @@ const GuestList = () => {
       } else if (player) {
         setTeams((prevState) => {
           const newState = {...prevState}
-          console.log(newState[team])
           newState[team].push(e.target.value)
           newState[team] = (newState[team].filter(word => word !== player))
           return newState
@@ -126,7 +125,7 @@ const GuestList = () => {
                 deleteTeam(team)
               }}
             >
-              DELETE
+              Delete
             </button>
           </h1>
           <ul>
@@ -139,7 +138,7 @@ const GuestList = () => {
                     deletePlayer(team, player)
                   }}
                 >
-                  DELETE
+                  Delete
                 </button>
               </li>
             ))}
@@ -179,7 +178,7 @@ const GuestList = () => {
     <div className="root-div">
       <form ref={ref} onSubmit={handleSubmit} className="input-form">
         <div>
-          <h1>choose a player</h1>
+          <h1>Choose a player</h1>
           <input
             className="input-blue"
             name="player"
@@ -189,7 +188,7 @@ const GuestList = () => {
           />
         </div>
         <div>
-          <h1>choose a team</h1>
+          <h1>Choose a team</h1>
           <input
             className="input-blue"
             name="team"
@@ -200,7 +199,7 @@ const GuestList = () => {
         </div>
       </form>
       <button className="delete-teams-btn" name="appear" onClick={() => setTeams({})}>
-        delete every teams
+        Delete every teams
       </button>
       <div className="team-div">{displayTeams}</div>
     </div>
