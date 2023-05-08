@@ -60,7 +60,7 @@ const GuestList = () => {
     if (!player) {
       e.target.text = ''
       const newInput = document.createElement('input')
-      newInput.className += 'input-blue w-fit'
+      newInput.className += 'text-input w-[250px]'
       newInput.value = `${team}`
       newInput.onkeydown = (e) => modifyItemValue(e, team)
       newInput.onblur = (e) => backToInitalValue(e, team)
@@ -69,7 +69,7 @@ const GuestList = () => {
     } else if (player) {
       e.target.text = ''
       const newInput = document.createElement('input')
-      newInput.className += 'input-blue w-fit'
+      newInput.className += 'text-input w-[250px]'
       newInput.value = `${player}`
       newInput.onkeydown = (e) => modifyItemValue(e, team, player)
       newInput.onblur = (e) => backToInitalValue(e, team, player)
@@ -117,10 +117,10 @@ const GuestList = () => {
     for (let [team, players] of Object.entries(teams)) {
       const display = (
         <>
-          <h1 className="opacity-1">
-            <a onClick={(e) => modifyItem(e,team)}>{team}</a>
+          <h1 className="group text-5xl">
+            <a onClick={(e) => modifyItem(e, team)}>{team}</a>
             <button
-              className="delete-btn"
+              className="group-hover:opacity-100 ml-[5px] text-[#e24c4c] opacity-0 transition-opacity duration-700 ease-in-out"
               onClick={() => {
                 deleteTeam(team)
               }}
@@ -128,12 +128,12 @@ const GuestList = () => {
               Delete
             </button>
           </h1>
-          <ul>
+          <ul className="w-fit mb-10">
             {Object.values(players).map((player) => (
-              <li className="opacity-1" >
+              <li className="group list-none text-start text-[#163D5D] text-2xl ml-6">
                 <a onClick={(e) => modifyItem(e, team, player)}>{player}</a>
                 <button
-                  className="delete-btn"
+                  className="group-hover:opacity-100 ml-[5px] text-[#e24c4c] opacity-0 transition-opacity duration-700 ease-in-out"
                   onClick={() => {
                     deletePlayer(team, player)
                   }}
@@ -175,12 +175,12 @@ const GuestList = () => {
   }
 
   return (
-    <div className="root-div">
-      <form ref={ref} onSubmit={handleSubmit} className="input-form">
+    <div className="flex flex-col justify-center items-center gap-y-8 h-full text-center">
+      <form ref={ref} onSubmit={handleSubmit} className="flex gap-20">
         <div>
-          <h1>Choose a player</h1>
+          <h1 className='text-3xl'>Choose a player</h1>
           <input
-            className="input-blue"
+            className="text-input"
             name="player"
             value={detail.player}
             onChange={handleChange}
@@ -188,9 +188,9 @@ const GuestList = () => {
           />
         </div>
         <div>
-          <h1>Choose a team</h1>
+          <h1 className='text-3xl'>Choose a team</h1>
           <input
-            className="input-blue"
+            className="text-input"
             name="team"
             value={detail.team}
             onChange={handleChange}
@@ -198,10 +198,14 @@ const GuestList = () => {
           />
         </div>
       </form>
-      <button className="delete-teams-btn" name="appear" onClick={() => setTeams({})}>
-        Delete every teams
+      <button
+        className="text-[#e24c4c] text-5xl"
+        name="appear"
+        onClick={() => setTeams({})}
+      >
+        Delete every team
       </button>
-      <div className="team-div">{displayTeams}</div>
+      <div className="flex flex-col items-start w-fit">{displayTeams}</div>
     </div>
   )
 }
