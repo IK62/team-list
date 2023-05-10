@@ -1,4 +1,4 @@
-function WhoIAm() {
+export default function WhoIAm() {
     return ( 
         <div className="flex flex-col p-36 gap-y-8">
             <h1 className="text-8xl">Bonjour !</h1>
@@ -6,5 +6,3 @@ function WhoIAm() {
         </div>
      );
 }
-
-export default WhoIAm

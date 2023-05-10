@@ -1,4 +1,4 @@
-function home() {
+export default function home() {
   return (
     <div className="flex flex-col p-36 gap-y-10">
       <p className="text-7xl">
@@ -25,5 +25,3 @@ function home() {
     </div>
   )
 }
-
-export default home
