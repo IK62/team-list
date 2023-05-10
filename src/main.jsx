@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Contact from "./components/Contact";
-import Home from "./components/HomePage";
-import GuestList from './components/GuestList'
-import WhoIAm from "./components/Apropos";
+import NavBar from "./components/NavBar.jsx";
+import Contact from "./components/Contact.jsx";
+import Home from "./components/HomePage.jsx";
+import GuestList from './components/GuestList.jsx'
+import WhoIAm from "./components/Apropos.jsx";
 
 const router = createBrowserRouter([
     {
