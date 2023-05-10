@@ -1,4 +1,4 @@
-const contact = () => {
+export default function Contact() {
   return (
     <div className="w-full h-3/4 flex justify-center items-center">
       <form className="flex flex-col w-[500px] p-8 gap-y-2 items-center">
@@ -23,5 +23,3 @@ const contact = () => {
     </div>
   )
 }
-
-export default contact
