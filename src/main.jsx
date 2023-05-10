@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NavBar from "./components/navBar";
-import Contact from "./components/contact";
-import Home from "./components/homePage";
+import NavBar from "./components/NavBar";
+import Contact from "./components/Nontact";
+import Home from "./components/HomePage";
 import GuestList from './components/GuestList'
 import WhoIAm from "./components/À propos";
 
