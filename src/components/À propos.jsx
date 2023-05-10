@@ -7,4 +7,4 @@ function WhoIAm() {
      );
 }
 
-export default WhoIAm;
+export default WhoIAm
