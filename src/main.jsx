@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import Contact from "./components/Contact";
 import Home from "./components/HomePage";
 import GuestList from './components/GuestList'
-import WhoIAm from "./components/À propos";
+import WhoIAm from "./components/Apropos";
 
 const router = createBrowserRouter([
     {
