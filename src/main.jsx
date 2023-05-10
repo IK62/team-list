@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./components/root";
+import NavBar from "./components/navBar";
 import Contact from "./components/contact";
 import Home from "./components/homePage";
 import GuestList from './components/GuestList'
+import WhoIAm from "./components/À propos";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
+        element: <NavBar />,
         children: [
             {
               path: "",
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact />
+            },
+            {
+                path: "whoIAm",
+                element: <WhoIAm />
             }
         ]
     }

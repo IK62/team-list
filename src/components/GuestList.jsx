@@ -24,12 +24,6 @@ const GuestList = () => {
     }
   }, [teams])
 
-  function handleKeyDown(e) {
-    if (e.code === 'Enter') {
-      ref.current.requestSubmit()
-    }
-  }
-
   function handleChange(e) {
     const { name, value } = e.target
     setDetail({ ...detail, [name]: value })
@@ -125,7 +119,7 @@ const GuestList = () => {
                 deleteTeam(team)
               }}
             >
-              Delete
+              Supprimer
             </button>
           </h1>
           <ul className="w-fit mb-10">
@@ -138,7 +132,7 @@ const GuestList = () => {
                     deletePlayer(team, player)
                   }}
                 >
-                  Delete
+                  Supprimer
                 </button>
               </li>
             ))}
@@ -176,34 +170,33 @@ const GuestList = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-y-8 h-full text-center">
-      <form ref={ref} onSubmit={handleSubmit} className="flex gap-20">
+      <form ref={ref} onSubmit={handleSubmit} className="flex gap-20 items-center">
         <div>
-          <h1 className='text-3xl'>Choose a player</h1>
+          <h1 className='text-3xl'>choisie un joueur</h1>
           <input
             className="text-input"
             name="player"
             value={detail.player}
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
           />
         </div>
         <div>
-          <h1 className='text-3xl'>Choose a team</h1>
+          <h1 className='text-3xl'>choisie une équipe</h1>
           <input
             className="text-input"
             name="team"
             value={detail.team}
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
           />
         </div>
+        <button type='submit' className='text-input text-4xl h-11 py-1 px-4'>entrer</button>
       </form>
       <button
         className="text-[#e24c4c] text-5xl"
         name="appear"
         onClick={() => setTeams({})}
       >
-        Delete every team
+        Supprimer toute les équipes
       </button>
       <div className="flex flex-col items-start w-fit">{displayTeams}</div>
     </div>

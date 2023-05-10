@@ -8,18 +8,18 @@ function home() {
         </a>
       </p>
       <p className="text-4xl">
-        sur ce site vous pouvez{' '}
+        sur ce site vous pouvez
         <a className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600">
           crée
         </a>
-        ,{' '}
+        ,
         <a className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-900">
           supprimer
-        </a>{' '}
-        et{' '}
+        </a>
+        et
         <a className="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-indigo-900">
           modifier
-        </a>{' '}
+        </a>
         vos équipes autant que vous le voulez !
       </p>
     </div>
